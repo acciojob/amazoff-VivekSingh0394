@@ -52,7 +52,7 @@ public class OrderRepository {
         }
         return null;
     }
-    public int getOrderCountForPartnerid(String id)
+    public Integer getOrderCountForPartnerid(String id)
     {
        List<String> orders= orderPartnerPairDb.get(id);
        return orders.size();
@@ -76,9 +76,9 @@ public class OrderRepository {
         }
         return allOrders;
     }
-    public int unassignedOrders()
+    public Integer unassignedOrders()
     {
-        int unassignedOrdersCount =0;
+        Integer unassignedOrdersCount =0;
         boolean unassigned = true;
         for(String x:orderDb.keySet())
         {
@@ -101,18 +101,18 @@ public class OrderRepository {
 
         return unassignedOrdersCount;
     }
-    public int ordersUndeliveredafterTime(String timeGiven,String partnerId)
+    public Integer ordersUndeliveredafterTime(String timeGiven,String partnerId)
     {
-        int undeliveredOrders =0;
+        Integer undeliveredOrders =0;
         String time1[] = timeGiven.split(":");
-        int time= Integer.parseInt(time1[0])*60+ Integer.parseInt(time1[1]);
+        Integer time= Integer.parseInt(time1[0])*60+ Integer.parseInt(time1[1]);
         if(orderPartnerPairDb.containsKey(partnerId))
         {
             List<String>orderList = orderPartnerPairDb.get(partnerId);
-            for(int i =0 ; i < orderList.size();i++)
+            for(Integer i =0 ; i < orderList.size();i++)
             {
                 Order order = orderDb.get(orderList.get(i));
-                int orderTime = order.getDeliveryTime();
+                Integer orderTime = order.getDeliveryTime();
                 if(orderTime > time)
                 {
                     undeliveredOrders++;
@@ -124,12 +124,12 @@ public class OrderRepository {
     }
     public String lastDeliveryTime(String id)
     {
-        int lastdelivery=Integer.MIN_VALUE;
+        Integer lastdelivery=Integer.MIN_VALUE;
         List<String>orderlist= orderPartnerPairDb.get(id);
-        for(int i =0 ; i < orderlist.size();i++)
+        for(Integer i =0 ; i < orderlist.size();i++)
         {
             Order order = orderDb.get(orderlist.get(i));
-            int orderTime = order.getDeliveryTime();
+            Integer orderTime = order.getDeliveryTime();
             if(orderTime > lastdelivery)
             {
                 lastdelivery=orderTime;
