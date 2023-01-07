@@ -14,6 +14,17 @@ public class Order {
         this.deliveryTime= Integer.parseInt(time[0])*60+ Integer.parseInt(time[1]);
     }
 
+    public Order() {
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setDeliveryTime(int deliveryTime) {
+        this.deliveryTime = deliveryTime;
+    }
+
     public String getId() {
         return id;
     }
